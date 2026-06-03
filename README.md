@@ -1,0 +1,261 @@
+# MIORAH
+WHERE ELEGENCE FINDS YOU
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <title>My Store</title>
+
+  <style>
+
+    body {
+
+      font-family: Arial;
+
+      margin: 0;
+
+      background: #f5f5f5;
+
+    }
+
+    header {
+
+      background: black;
+
+      color: white;
+
+      padding: 15px;
+
+      text-align: center;
+
+      font-size: 22px;
+
+    }
+
+    .container {
+
+      display: flex;
+
+      flex-wrap: wrap;
+
+      padding: 20px;
+
+      gap: 20px;
+
+    }
+
+    .product {
+
+      background: white;
+
+      padding: 15px;
+
+      width: 200px;
+
+      border-radius: 10px;
+
+      box-shadow: 0 0 5px #ccc;
+
+    }
+
+    .product img {
+
+      width: 100%;
+
+      border-radius: 10px;
+
+    }
+
+    button {
+
+      background: black;
+
+      color: white;
+
+      border: none;
+
+      padding: 10px;
+
+      width: 100%;
+
+      margin-top: 10px;
+
+      cursor: pointer;
+
+    }
+
+    .cart {
+
+      position: fixed;
+
+      right: 0;
+
+      top: 0;
+
+      width: 300px;
+
+      height: 100%;
+
+      background: white;
+
+      box-shadow: -2px 0 5px #aaa;
+
+      padding: 15px;
+
+      overflow-y: auto;
+
+    }
+
+    .cart h2 {
+
+      text-align: center;
+
+    }
+
+    .cart-item {
+
+      border-bottom: 1px solid #ddd;
+
+      padding: 10px 0;
+
+    }
+
+    .checkout {
+
+      background: green;
+
+      margin-top: 10px;
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+<header>
+
+  🛍 My Free Online Store
+
+</header>
+
+<!-- PRODUCTS -->
+
+<div class="container">
+
+  <div class="product">
+
+    <img src="https://via.placeholder.com/200" />
+
+    <h3>Product 1</h3>
+
+    <p>Rs 500</p>
+
+    <button onclick="addToCart('Product 1', 500)">Add to Cart</button>
+
+  </div>
+
+  <div class="product">
+
+    <img src="https://via.placeholder.com/200" />
+
+    <h3>Product 2</h3>
+
+    <p>Rs 1000</p>
+
+    <button onclick="addToCart('Product 2', 1000)">Add to Cart</button>
+
+  </div>
+
+</div>
+
+<!-- CART -->
+
+<div class="cart">
+
+  <h2>🛒 Cart</h2>
+
+  <div id="cartItems"></div>
+
+  <h3>Total: Rs <span id="total">0</span></h3>
+
+  <button class="checkout" onclick="checkoutWhatsApp()">
+
+    Checkout on WhatsApp
+
+  </button>
+
+</div>
+
+<script>
+
+  let cart = [];
+
+  function addToCart(name, price) {
+
+    cart.push({ name, price });
+
+    displayCart();
+
+  }
+
+  function displayCart() {
+
+    let cartItems = document.getElementById("cartItems");
+
+    let total = 0;
+
+    cartItems.innerHTML = "";
+
+    cart.forEach((item, index) => {
+
+      total += item.price;
+
+      cartItems.innerHTML += `
+
+        <div class="cart-item">
+
+          ${item.name} - Rs ${item.price}
+
+        </div>
+
+      `;
+
+    });
+
+    document.getElementById("total").innerText = total;
+
+  }
+
+  function checkoutWhatsApp() {
+
+    let message = "Hello, I want to order:%0A";
+
+    cart.forEach(item => {
+
+      message += `- ${item.name} (Rs ${item.price})%0A`;
+
+    });
+
+    let total = document.getElementById("total").innerText;
+
+    message += "%0ATotal: Rs " + total;
+
+    // Replace with your WhatsApp number
+
+    let phone = "923000000000";
+
+    window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
+
+  }
+
+</script>
+
+</body>
+
+</html>

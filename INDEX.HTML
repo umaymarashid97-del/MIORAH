@@ -1,772 +1,416 @@
-<!DOCTYPE html>
+          <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Purple Pro Store - Premium Products</title>
+    <title>MIORAH - Where Elegance Finds You</title>
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #f6f0ff 0%, #ede7f6 100%);
-            color: #333;
-            min-height: 100vh;
-        }
-
-        /* HEADER */
-        header {
-            background: linear-gradient(90deg, #3b0a57, #7b2cbf, #c77dff);
-            color: white;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(59, 10, 87, 0.3);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        header h1 {
-            font-size: 28px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        header p {
-            font-size: 12px;
-            opacity: 0.9;
-            margin-top: 5px;
-        }
-
-        /* MAIN CONTAINER */
-        .main-container {
-            display: flex;
-            gap: 20px;
-            padding: 20px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .content {
-            flex: 1;
-            min-width: 0;
-        }
-
-        /* ADMIN PANEL */
-        .admin {
-            background: white;
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 5px 20px rgba(123, 44, 191, 0.1);
-        }
-
-        .admin h3 {
-            color: #7b2cbf;
-            margin-bottom: 15px;
-            font-size: 18px;
-        }
-
-        .form-group {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr auto;
-            gap: 10px;
-            align-items: flex-end;
-        }
-
-        input, select {
-            padding: 12px 15px;
-            border: 2px solid #e0d7f1;
-            border-radius: 8px;
-            font-size: 14px;
-            transition: all 0.3s ease;
-        }
-
-        input:focus, select:focus {
-            outline: none;
-            border-color: #7b2cbf;
-            box-shadow: 0 0 10px rgba(123, 44, 191, 0.2);
-        }
-
-        input::placeholder {
-            color: #999;
-        }
-
-        /* BUTTON */
-        button {
-            background: linear-gradient(90deg, #5a189a, #7b2cbf);
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            font-size: 14px;
-        }
-
-        button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(90, 24, 154, 0.3);
-        }
-
-        button:active {
-            transform: translateY(0);
-        }
-
-        .btn-small {
-            padding: 8px 15px;
-            font-size: 12px;
-            width: 100%;
-            margin-top: 10px;
-        }
-
-        .btn-danger {
-            background: #e63946;
-        }
-
-        .btn-danger:hover {
-            background: #d62828;
-        }
-
-        /* CATEGORIES */
-        .categories {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-            background: white;
-            padding: 15px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(123, 44, 191, 0.1);
-        }
-
-        .categories button {
-            padding: 10px 20px;
-            border-radius: 25px;
-            background: #e8dff5;
-            color: #7b2cbf;
-            font-weight: 600;
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
-        }
-
-        .categories button:hover,
-        .categories button.active {
-            background: linear-gradient(90deg, #5a189a, #7b2cbf);
-            color: white;
-            border-color: #7b2cbf;
-        }
-
-        /* PRODUCTS GRID */
-        .container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 20px;
-            padding: 10px 0;
-            margin-bottom: 20px;
-        }
-
-        .card {
-            background: white;
-            border-radius: 15px;
-            padding: 15px;
-            text-align: center;
-            box-shadow: 0 5px 20px rgba(123, 44, 191, 0.1);
-            transition: all 0.3s ease;
-            overflow: hidden;
-        }
-
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 10px 30px rgba(123, 44, 191, 0.2);
-        }
-
-        .card img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 10px;
-        }
-
-        .card h4 {
-            color: #3b0a57;
-            font-size: 16px;
-            margin: 10px 0;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .card p {
-            color: #7b2cbf;
-            font-size: 18px;
-            font-weight: 700;
-            margin: 10px 0;
-        }
-
-        .card-category {
-            display: inline-block;
-            background: #e8dff5;
-            color: #7b2cbf;
-            padding: 5px 10px;
-            border-radius: 15px;
-            font-size: 11px;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-
-        .card button {
-            width: 100%;
-        }
-
-        .empty-state {
-            grid-column: 1 / -1;
-            text-align: center;
-            padding: 60px 20px;
-            color: #999;
-        }
-
-        .empty-state i {
-            font-size: 48px;
-            margin-bottom: 15px;
-            opacity: 0.3;
-        }
-
-        /* CART SIDEBAR */
-        .cart {
-            position: fixed;
-            right: 0;
-            top: 0;
-            width: 320px;
-            height: 100vh;
-            background: white;
-            padding: 20px;
-            overflow-y: auto;
-            box-shadow: -5px 0 20px rgba(59, 10, 87, 0.2);
-            margin-top: 70px;
-            z-index: 50;
-        }
-
-        .cart h3 {
-            color: #7b2cbf;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .cart-empty {
-            text-align: center;
-            color: #999;
-            padding: 30px 0;
-        }
-
-        .cart-empty i {
-            font-size: 40px;
-            margin-bottom: 10px;
-            opacity: 0.3;
-        }
-
-        .cart-item {
-            background: #f6f0ff;
-            padding: 12px;
-            margin-bottom: 10px;
-            border-radius: 10px;
-            font-size: 13px;
-            border-left: 4px solid #7b2cbf;
-        }
-
-        .cart-item-name {
-            font-weight: 600;
-            color: #3b0a57;
-            margin-bottom: 5px;
-        }
-
-        .cart-item-price {
-            color: #7b2cbf;
-            font-weight: 700;
-        }
-
-        .cart-item-qty {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-top: 8px;
-            font-size: 12px;
-        }
-
-        .qty-controls {
-            display: flex;
-            gap: 5px;
-            align-items: center;
-        }
-
-        .qty-btn {
-            background: #7b2cbf;
-            color: white;
-            border: none;
-            width: 22px;
-            height: 22px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 12px;
-            padding: 0;
-        }
-
-        .qty-btn:hover {
-            background: #5a189a;
-        }
-
-        .remove-btn {
-            background: #e63946;
-            color: white;
-            border: none;
-            padding: 4px 8px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 11px;
-            width: 100%;
-            margin-top: 5px;
-        }
-
-        .remove-btn:hover {
-            background: #d62828;
-        }
-
-        .cart-divider {
-            border-top: 2px solid #e0d7f1;
-            margin: 15px 0;
-        }
-
-        .cart-total {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 15px 0;
-            padding: 15px;
-            background: linear-gradient(90deg, #f6f0ff, #ede7f6);
-            border-radius: 10px;
-        }
-
-        .cart-total h4 {
-            color: #3b0a57;
-            font-size: 14px;
-        }
-
-        .cart-total span {
-            color: #7b2cbf;
-            font-size: 22px;
-            font-weight: 700;
-        }
-
-        .checkout-btn {
-            width: 100%;
-            padding: 15px;
-            margin-top: 10px;
-            font-size: 14px;
-        }
-
-        .clear-cart-btn {
-            width: 100%;
-            padding: 12px;
-            margin-top: 10px;
-            background: #999;
-            font-size: 13px;
-        }
-
-        .clear-cart-btn:hover {
-            background: #777;
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 1024px) {
-            .main-container {
-                flex-direction: column;
-                padding: 15px;
-            }
-
-            .cart {
-                position: static;
-                width: 100%;
-                height: auto;
-                box-shadow: 0 5px 20px rgba(123, 44, 191, 0.1);
-                margin-top: 0;
-                border-radius: 15px;
-                margin-bottom: 20px;
-            }
-
-            .form-group {
-                grid-template-columns: 1fr;
-            }
-
-            .container {
-                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            }
-        }
-
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 22px;
-            }
-
-            .container {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-                gap: 15px;
-            }
-
-            .card {
-                padding: 12px;
-            }
-
-            .card img {
-                height: 130px;
-            }
-
-            .categories {
-                flex-wrap: wrap;
-            }
-
-            .categories button {
-                padding: 8px 15px;
-                font-size: 13px;
-            }
-        }
-
-        /* ANIMATIONS */
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .card, .admin, .cart {
-            animation: slideIn 0.3s ease-out;
-        }
-
-        /* SCROLLBAR */
-        .cart::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        .cart::-webkit-scrollbar-track {
-            background: #f6f0ff;
-        }
-
-        .cart::-webkit-scrollbar-thumb {
-            background: #7b2cbf;
-            border-radius: 4px;
-        }
-
-        .cart::-webkit-scrollbar-thumb:hover {
-            background: #5a189a;
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
-    <header>
-        <h1><i class="fas fa-heart"></i> Purple Pro Store</h1>
-        <p>WHERE ELEGANCE FINDS YOU</p>
-    </header>
+    <!-- Navigation Header -->
+    <header class="header">
+        <div class="header-top">
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo-section">
+                        <h1 class="brand-name">MIORAH</h1>
+                        <p class="tagline">Where Elegance Finds You</p>
+                    </div>
+                    
+                    <div class="search-bar">
+                        <input type="text" id="searchInput" placeholder="Search for luxury pieces...">
+                        <button><i class="fas fa-search"></i></button>
+                    </div>
 
-    <div class="main-container">
-        <div class="content">
-            <!-- ADMIN PANEL -->
-            <div class="admin">
-                <h3><i class="fas fa-plus-circle"></i> Add Product (Admin)</h3>
-                <div class="form-group">
-                    <input id="name" placeholder="Product Name" type="text">
-                    <input id="price" placeholder="Price (Rs)" type="number" min="1">
-                    <input id="img" placeholder="Image URL" type="url">
-                    <select id="category">
-                        <option value="floral">Floral</option>
-                        <option value="industrial">Industrial</option>
-                        <option value="luxury">Luxury</option>
-                    </select>
-                    <button onclick="addProduct()" style="width: auto;"><i class="fas fa-plus"></i> Add</button>
+                    <div class="header-icons">
+                        <button class="icon-btn wishlist-btn" id="wishlistBtn">
+                            <i class="far fa-heart"></i>
+                            <span class="wishlist-count">0</span>
+                        </button>
+                        <button class="icon-btn cart-btn" id="cartBtn">
+                            <i class="fas fa-shopping-bag"></i>
+                            <span class="cart-count">0</span>
+                        </button>
+                    </div>
                 </div>
             </div>
-
-            <!-- CATEGORIES -->
-            <div class="categories">
-                <button class="active" onclick="filter('all')"><i class="fas fa-th"></i> All</button>
-                <button onclick="filter('floral')"><i class="fas fa-flower"></i> Floral</button>
-                <button onclick="filter('industrial')"><i class="fas fa-cog"></i> Industrial</button>
-                <button onclick="filter('luxury')"><i class="fas fa-crown"></i> Luxury</button>
-            </div>
-
-            <!-- PRODUCTS -->
-            <div class="container" id="products"></div>
         </div>
 
-        <!-- CART SIDEBAR -->
-        <div class="cart">
-            <h3><i class="fas fa-shopping-cart"></i> Shopping Cart</h3>
-            <div id="cart-items"></div>
-            <div class="cart-divider"></div>
-            <div class="cart-total">
-                <h4>Total:</h4>
-                <span>Rs <span id="total">0</span></span>
+        <!-- Navigation Menu -->
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-menu">
+                    <a href="#home" class="nav-link active">Home</a>
+                    <a href="#featured" class="nav-link">Featured</a>
+                    <a href="#new-arrivals" class="nav-link">New Arrivals</a>
+                    <a href="#best-sellers" class="nav-link">Best Sellers</a>
+                    <a href="#reviews" class="nav-link">Reviews</a>
+                    <a href="#instagram" class="nav-link">Instagram</a>
+                </div>
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
-            <button class="checkout-btn" onclick="checkout()"><i class="fas fa-whatsapp"></i> Checkout on WhatsApp</button>
-            <button class="clear-cart-btn" onclick="clearCart()"><i class="fas fa-trash"></i> Clear Cart</button>
+        </nav>
+    </header>
+
+    <!-- Hero Banner Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="floral-decoration floral-top-left">🌸</div>
+            <div class="floral-decoration floral-top-right">🌹</div>
+            <div class="sparkle sparkle-1">✨</div>
+            <div class="sparkle sparkle-2">✨</div>
+            <div class="sparkle sparkle-3">✨</div>
+            
+            <div class="hero-text">
+                <h2 class="hero-title">Luxury Fashion <br> & Accessories</h2>
+                <p class="hero-subtitle">Discover our curated collection of elegant pieces</p>
+                <button class="btn btn-primary" onclick="document.getElementById('featured').scrollIntoView({behavior: 'smooth'})">
+                    Shop Now
+                    <span class="bow">🎀</span>
+                </button>
+            </div>
+
+            <div class="floral-decoration floral-bottom-left">🌷</div>
+            <div class="floral-decoration floral-bottom-right">💜</div>
+        </div>
+    </section>
+
+    <!-- Featured Collection Section -->
+    <section class="featured-collection" id="featured">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="heart-icon">💜</span>
+                    Featured Collection
+                    <span class="heart-icon">💜</span>
+                </h2>
+                <p class="section-subtitle">Handpicked luxury pieces for the modern woman</p>
+            </div>
+
+            <div class="products-grid" id="featuredProducts">
+                <!-- Products will be dynamically loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- New Arrivals Section -->
+    <section class="new-arrivals" id="new-arrivals">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="sparkle-text">✨</span>
+                    New Arrivals
+                    <span class="sparkle-text">✨</span>
+                </h2>
+                <p class="section-subtitle">Latest additions to our luxury collection</p>
+            </div>
+
+            <div class="products-grid" id="newArrivalsProducts">
+                <!-- Products will be dynamically loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Best Sellers Section -->
+    <section class="best-sellers" id="best-sellers">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="bow-icon">🎀</span>
+                    Best Sellers
+                    <span class="bow-icon">🎀</span>
+                </h2>
+                <p class="section-subtitle">Customer favorites & most loved items</p>
+            </div>
+
+            <div class="products-grid" id="bestSellersProducts">
+                <!-- Products will be dynamically loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Reviews Section -->
+    <section class="customer-reviews" id="reviews">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">What Our Customers Say</h2>
+                <p class="section-subtitle">Love from our luxe community</p>
+            </div>
+
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="review-text">"MIORAH has transformed my wardrobe! The quality is exceptional and the designs are absolutely stunning. Elegance truly finds you here!"</p>
+                    <p class="review-author">- Ayesha Khan</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="review-text">"The attention to detail in every piece is remarkable. I felt like a princess wearing their collection. Highly recommend!"</p>
+                    <p class="review-author">- Sara Ahmed</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="review-text">"Luxurious, elegant, and absolutely worth every penny. MIORAH is my go-to place for special occasions!"</p>
+                    <p class="review-author">- Hira Malik</p>
+                </div>
+
+                <div class="review-card">
+                    <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="review-text">"Beautiful designs with premium quality. The customer service is exceptional too. Very happy with my purchases!"</p>
+                    <p class="review-author">- Zara Hassan</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instagram Gallery Section -->
+    <section class="instagram-gallery" id="instagram">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Follow Our Instagram</h2>
+                <p class="section-subtitle">@miorah_official - Join our luxe community</p>
+            </div>
+
+            <div class="instagram-grid">
+                <div class="instagram-item">
+                    <img src="https://via.placeholder.com/300x300?text=Luxury+Fashion+1" alt="Instagram post">
+                    <div class="instagram-overlay">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                </div>
+                <div class="instagram-item">
+                    <img src="https://via.placeholder.com/300x300?text=Elegant+Design+2" alt="Instagram post">
+                    <div class="instagram-overlay">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                </div>
+                <div class="instagram-item">
+                    <img src="https://via.placeholder.com/300x300?text=Premium+Quality+3" alt="Instagram post">
+                    <div class="instagram-overlay">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                </div>
+                <div class="instagram-item">
+                    <img src="https://via.placeholder.com/300x300?text=Luxury+Accessories+4" alt="Instagram post">
+                    <div class="instagram-overlay">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                </div>
+                <div class="instagram-item">
+                    <img src="https://via.placeholder.com/300x300?text=Feminine+Fashion+5" alt="Instagram post">
+                    <div class="instagram-overlay">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                </div>
+                <div class="instagram-item">
+                    <img src="https://via.placeholder.com/300x300?text=Brand+Story+6" alt="Instagram post">
+                    <div class="instagram-overlay">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shopping Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Your Luxury Cart</h3>
+            <button class="close-btn" id="closeCart">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <div class="cart-items" id="cartItems">
+            <p class="empty-cart-message">Your cart is empty. Start shopping! 💜</p>
+        </div>
+
+        <div class="cart-summary">
+            <div class="summary-row">
+                <span>Subtotal:</span>
+                <span id="subtotal">Rs. 0</span>
+            </div>
+            <div class="summary-row">
+                <span>Shipping:</span>
+                <span id="shipping">Rs. 0</span>
+            </div>
+            <div class="summary-row total">
+                <span>Total:</span>
+                <span id="total">Rs. 0</span>
+            </div>
+        </div>
+
+        <button class="btn btn-primary checkout-btn" id="checkoutBtn">Proceed to Checkout</button>
+    </div>
+
+    <!-- Cart Overlay -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+
+    <!-- Quick View Modal -->
+    <div class="modal" id="quickViewModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-body" id="modalBody">
+                <!-- Product details will be loaded here -->
+            </div>
         </div>
     </div>
 
-    <script>
-        let products = [];
-        let cart = [];
-        let currentFilter = "all";
+    <!-- Checkout Modal -->
+    <div class="modal" id="checkoutModal">
+        <div class="modal-content checkout-content">
+            <button class="modal-close" id="closeCheckout">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <div class="checkout-header">
+                <h2>Checkout</h2>
+            </div>
 
-        // Load from localStorage on page load
-        window.addEventListener('DOMContentLoaded', () => {
-            loadFromStorage();
-            renderProducts();
-        });
-
-        // ADD PRODUCT
-        function addProduct() {
-            let name = document.getElementById("name").value.trim();
-            let price = document.getElementById("price").value.trim();
-            let img = document.getElementById("img").value.trim();
-            let category = document.getElementById("category").value;
-
-            if (!name || !price || !img) {
-                alert("Please fill all fields!");
-                return;
-            }
-
-            if (isNaN(price) || price <= 0) {
-                alert("Please enter a valid price!");
-                return;
-            }
-
-            products.push({
-                id: Date.now(),
-                name: name,
-                price: Number(price),
-                img: img,
-                category: category
-            });
-
-            saveToStorage();
-            renderProducts();
-
-            // Clear inputs
-            document.getElementById("name").value = "";
-            document.getElementById("price").value = "";
-            document.getElementById("img").value = "";
-
-            alert("Product added successfully! ✨");
-        }
-
-        // FILTER
-        function filter(cat) {
-            currentFilter = cat;
-            document.querySelectorAll(".categories button").forEach(btn => {
-                btn.classList.remove("active");
-            });
-            event.target.classList.add("active");
-            renderProducts();
-        }
-
-        // RENDER PRODUCTS
-        function renderProducts() {
-            let box = document.getElementById("products");
-            box.innerHTML = "";
-
-            let filtered = products.filter(p => {
-                return currentFilter === "all" || p.category === currentFilter;
-            });
-
-            if (filtered.length === 0) {
-                box.innerHTML = `
-                    <div class="empty-state">
-                        <i class="fas fa-inbox"></i>
-                        <h3>No products found</h3>
-                        <p>Add some products to get started!</p>
-                    </div>
-                `;
-                return;
-            }
-
-            filtered.forEach((p, index) => {
-                box.innerHTML += `
-                    <div class="card">
-                        <img src="${p.img}" onerror="this.src='https://via.placeholder.com/200?text=Product'">
-                        <div class="card-category">${p.category.charAt(0).toUpperCase() + p.category.slice(1)}</div>
-                        <h4>${p.name}</h4>
-                        <p>Rs ${p.price}</p>
-                        <button onclick="addToCart(${p.id})"><i class="fas fa-cart-plus"></i> Add to Cart</button>
-                    </div>
-                `;
-            });
-        }
-
-        // ADD TO CART
-        function addToCart(productId) {
-            let product = products.find(p => p.id === productId);
-            if (!product) return;
-
-            let cartItem = cart.find(item => item.id === productId);
-            if (cartItem) {
-                cartItem.qty++;
-            } else {
-                cart.push({
-                    ...product,
-                    qty: 1
-                });
-            }
-
-            saveToStorage();
-            renderCart();
-        }
-
-        // RENDER CART
-        function renderCart() {
-            let box = document.getElementById("cart-items");
-            let total = 0;
-
-            box.innerHTML = "";
-
-            if (cart.length === 0) {
-                box.innerHTML = `
-                    <div class="cart-empty">
-                        <i class="fas fa-shopping-bag"></i>
-                        <p>Your cart is empty</p>
-                    </div>
-                `;
-                document.getElementById("total").innerText = "0";
-                return;
-            }
-
-            cart.forEach(item => {
-                total += item.price * item.qty;
-                box.innerHTML += `
-                    <div class="cart-item">
-                        <div class="cart-item-name">${item.name}</div>
-                        <div class="cart-item-price">Rs ${item.price}</div>
-                        <div class="cart-item-qty">
-                            <div class="qty-controls">
-                                <button class="qty-btn" onclick="decreaseQty(${item.id})">−</button>
-                                <span style="min-width: 20px; text-align: center;">${item.qty}</span>
-                                <button class="qty-btn" onclick="increaseQty(${item.id})">+</button>
+            <div class="checkout-body">
+                <form id="checkoutForm">
+                    <!-- Personal Information -->
+                    <div class="form-section">
+                        <h3>Personal Information</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="fullName">Full Name</label>
+                                <input type="text" id="fullName" name="fullName" required>
                             </div>
-                            <span style="color: #7b2cbf; font-weight: 700;">Rs ${item.price * item.qty}</span>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
                         </div>
-                        <button class="remove-btn" onclick="removeFromCart(${item.id})"><i class="fas fa-trash-alt"></i> Remove</button>
                     </div>
-                `;
-            });
 
-            document.getElementById("total").innerText = total;
-        }
+                    <!-- Delivery Information -->
+                    <div class="form-section">
+                        <h3>Delivery Information</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="whatsapp">WhatsApp Number</label>
+                                <input type="tel" id="whatsapp" name="whatsapp" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Delivery Address</label>
+                            <textarea id="address" name="address" rows="3" required></textarea>
+                        </div>
+                    </div>
 
-        // INCREASE QUANTITY
-        function increaseQty(productId) {
-            let item = cart.find(c => c.id === productId);
-            if (item) {
-                item.qty++;
-                saveToStorage();
-                renderCart();
-            }
-        }
+                    <!-- Order Summary -->
+                    <div class="form-section">
+                        <h3>Order Summary</h3>
+                        <div id="checkoutOrderSummary" class="order-summary">
+                            <!-- Items will be listed here -->
+                        </div>
+                    </div>
 
-        // DECREASE QUANTITY
-        function decreaseQty(productId) {
-            let item = cart.find(c => c.id === productId);
-            if (item) {
-                if (item.qty > 1) {
-                    item.qty--;
-                } else {
-                    removeFromCart(productId);
-                    return;
-                }
-                saveToStorage();
-                renderCart();
-            }
-        }
+                    <!-- Payment Notice -->
+                    <div class="payment-notice">
+                        <div class="notice-icon">ℹ️</div>
+                        <div class="notice-content">
+                            <h4>Payment Instructions</h4>
+                            <p><strong>Advance payment is required for order confirmation.</strong></p>
+                            <p>Please send payment through:</p>
+                            <ul>
+                                <li><strong>EasyPaisa</strong> or</li>
+                                <li><strong>JazzCash</strong></li>
+                            </ul>
+                            <p>After payment, send the screenshot on WhatsApp: <strong>03290601027</strong></p>
+                            <p style="color: #8B4789; font-weight: 600;">Orders without payment confirmation may be cancelled.</p>
+                        </div>
+                    </div>
 
-        // REMOVE FROM CART
-        function removeFromCart(productId) {
-            cart = cart.filter(item => item.id !== productId);
-            saveToStorage();
-            renderCart();
-        }
+                    <!-- Total -->
+                    <div class="checkout-total">
+                        <div class="total-row">
+                            <span>Subtotal:</span>
+                            <span id="checkoutSubtotal">Rs. 0</span>
+                        </div>
+                        <div class="total-row">
+                            <span>Shipping:</span>
+                            <span id="checkoutShipping">Rs. 0</span>
+                        </div>
+                        <div class="total-row grand-total">
+                            <span>Grand Total:</span>
+                            <span id="checkoutGrandTotal">Rs. 0</span>
+                        </div>
+                    </div>
 
-        // CLEAR CART
-        function clearCart() {
-            if (cart.length === 0) {
-                alert("Your cart is already empty!");
-                return;
-            }
-            if (confirm("Are you sure you want to clear the cart?")) {
-                cart = [];
-                saveToStorage();
-                renderCart();
-            }
-        }
+                    <button type="submit" class="btn btn-primary btn-large">Complete Order</button>
+                </form>
+            </div>
+        </div>
+    </div>
 
-        // CHECKOUT
-        function checkout() {
-            if (cart.length === 0) {
-                alert("Your cart is empty!");
-                return;
-            }
+    <!-- Success Modal -->
+    <div class="modal" id="successModal">
+        <div class="modal-content success-content">
+            <div class="success-icon">✓</div>
+            <h2>Order Placed Successfully!</h2>
+            <p>Thank you for your order. Please proceed with the payment as instructed.</p>
+            <p class="success-phone"><strong>WhatsApp: 03290601027</strong></p>
+            <button class="btn btn-primary" onclick="closeSuccessModal()">Continue Shopping</button>
+        </div>
+    </div>
 
-            let msg = "🛍️ *Order Details:*%0A%0A";
-            let total = 0;
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>MIORAH</h4>
+                    <p>Where Elegance Finds You</p>
+                </div>
 
-            cart.forEach(item => {
-                msg += `• ${item.name}%0A  Qty: ${item.qty} x Rs ${item.price} = Rs ${item.price * item.qty}%0A%0A`;
-                total += item.price * item.qty;
-            });
+                <div class="footer-section contact-section">
+                    <h4>Contact Us</h4>
+                    <p>
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:elegancebymiorah23@gmail.com">elegancebymiorah23@gmail.com</a>
+                    </p>
+                    <p>
+                        <i class="fas fa-phone"></i>
+                        <a href="tel:03290601027">03290601027</a>
+                    </p>
+                </div>
 
-            msg += `━━━━━━━━━━━━━━━━━%0A`;
-            msg += `*Total: Rs ${total}*%0A%0A`;
-            msg += `Thank you for shopping at Purple Pro Store! 💜`;
+                <div class="footer-section social-section">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
 
-            let phone = "923290601027"; // Change to your WhatsApp number
+            <div class="footer-bottom">
+                <p>&copy; 2024 MIORAH. All rights reserved. | Where Elegance Finds You 💜</p>
+            </div>
+        </div>
+    </footer>
 
-            window.open("https://wa.me/" + phone + "?text=" + msg, "_blank");
-        }
-
-        // STORAGE FUNCTIONS
-        function saveToStorage() {
-            localStorage.setItem('products', JSON.stringify(products));
-            localStorage.setItem('cart', JSON.stringify(cart));
-        }
-
-        function loadFromStorage() {
-            let savedProducts = localStorage.getItem('products');
-            let savedCart = localStorage.getItem('cart');
-
-            if (savedProducts) {
-                products = JSON.parse(savedProducts);
-            }
-            if (savedCart) {
-                cart = JSON.parse(savedCart);
-            }
-
-            renderCart();
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
